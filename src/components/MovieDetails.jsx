@@ -30,15 +30,16 @@ const MovieDetails = () => {
     }, [id]);
 
     return (
-        <div className="relative overflow-hidden p-7  sm:p-10 " style={{ minHeight: "calc(100vh - 250px)" }}>
+
+        <div className="relative overflow-hidden  p-7  h-screen  sm:p-10 " >
             <div
-                className="bg-no-repeat bg-cover bg-fixed absolute inset-0 bg-center  opacity-85"
+                className="bg-no-repeat top-7 bg-cover bg-fixed absolute inset-0 bg-center  opacity-85"
                 style={{ backgroundImage: `url(${detailData.backgroundImg})` }}
             />
 
 
-            <div className='z-10 relative'>
-                <div className="flex justify-start items-end mx-auto h-[30vw] min-h-[170px] pb-6 w-full">
+            <div className='z-10 relative mt-14 '>
+                <div className="flex justify-start items-end mx-auto h-[25vw] min-h-[170px] pb-6 w-full">
                     <img className="max-w-[650px] min-w-[200px] w-[35vw]" src={detailData.titleImg} alt={detailData.title} />
                 </div>
 

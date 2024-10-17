@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase'
 import { setMovies } from '../redux/reducers/movieSlice'
+import ContentDiscoverySection from './ContentDiscoverySection'
+import HighlightsSection from './HighLighted'
 const Home = () => {
 
 
@@ -53,6 +55,8 @@ const Home = () => {
                 <NewDisney />
                 <Originals />
                 <Trending />
+                <ContentDiscoverySection />
+                <HighlightsSection />
             </div>
         </div>
     )

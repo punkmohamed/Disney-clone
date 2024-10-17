@@ -15,7 +15,8 @@ import { useEffect } from 'react';
 const links = [
     {
         icon: homeIcon,
-        text: "HOME"
+        text: "HOME",
+        to: '/home'
     },
     {
         icon: movieIcon,
@@ -83,7 +84,7 @@ const Header = () => {
     }
     return (
         <nav className=' fixed top-0 h-20 px-[36px] leading-4 flex justify-between items-center bg-nav w-full z-10'>
-            <Link className='w-[80px] mt-[4px] max-h-[70px]' >
+            <Link to={'/'} className='w-[80px] mt-[4px] max-h-[70px]' >
                 <img src={headerLogo} className='w-full' alt="logo" />
             </Link>
             {!user.name ? <button onClick={handleAuth} className='bg-black p-3 px-4 rounded-lg border border-white  transition-colors hover:bg-white hover:text-black font-bold uppercase tracking-widest'>Login</button>
@@ -91,7 +92,7 @@ const Header = () => {
                 <>
                     <div className='md:flex flex-nowrap items-center justify-end relative p-0 m-0 mr-auto ml-[25px] hidden '>
                         {links.map((link, i) => (
-                            <Link key={i} className="flex items-center px-3  ">
+                            <Link key={i} to={link?.to} className="flex items-center px-3  ">
                                 <img className="size-5 min-w-[20px] z-auto" src={link.icon} alt="home icon" />
                                 <span className=" uppercase text-lg tracking-widest relative whitespace-nowrap py-2 before:absolute before:content-[''] 
 before:bg-[#f9f9f9] before:rounded-b-md before:h-[2px] before:left-0 before:right-0 
@@ -102,12 +103,12 @@ hover:before:opacity-100 hover:before:scale-x-100">{link.text}</span>
                         ))}
                     </div>
 
-                    <div className='relative group'>
+                    <div className='relative group '>
                         <img src={user.photo} className='rounded-full size-12 cursor-pointer' alt="userImg" />
-                        <div className="absolute right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform scale-95 group-hover:scale-100">
+                        <div className="absolute right-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-500 transform scale-95 group-hover:scale-100">
                             <button
                                 onClick={handleLogout}
-                                className="bg-black text-white p-3 px-4 rounded-lg border border-white hover:bg-[#0063e5] hover:text-black font-bold uppercase tracking-widest whitespace-nowrap shadow-lg"
+                                className="bg-black z-[9999] text-white p-3 px-4 rounded-lg border border-white hover:bg-[#0063e5] hover:text-black font-bold uppercase tracking-widest whitespace-nowrap shadow-lg"
                             >
                                 Logout
                             </button>

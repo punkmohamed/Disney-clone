@@ -3,6 +3,7 @@ import Login from "./components/Login"
 import Header from "./components/Header"
 import Home from "./components/Home"
 import MovieDetails from "./components/MovieDetails"
+import Footer from "./components/Footer"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/detail/:id" element={<MovieDetails />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   )
