@@ -12,6 +12,7 @@ import { db } from '../firebase'
 import { setMovies } from '../redux/reducers/movieSlice'
 import ContentDiscoverySection from './ContentDiscoverySection'
 import HighlightsSection from './HighLighted'
+import Footer from './Footer'
 const Home = () => {
 
 
@@ -46,19 +47,23 @@ const Home = () => {
         return () => unsubscribe();
     }, [user.name, dispatch])
     return (
-        <div className=" relative overflow-hidden top-20 p-10" style={{ minHeight: "calc(100vh - 250px)" }}>
-            <div className=' bg-no-repeat bg-cover bg-fixed absolute inset-0 -z-1  ' style={{ backgroundImage: `url(${homeBG})` }} />
-            <ImgSlider />
-            <div className=" relative py-24">
-                <Viewers />
-                <Recommands />
-                <NewDisney />
-                <Originals />
-                <Trending />
-                <ContentDiscoverySection />
-                <HighlightsSection />
+        <>
+            <div className=" relative overflow-hidden top-20 p-10" style={{ minHeight: "calc(100vh - 250px)" }}>
+                <div className=' bg-no-repeat bg-cover bg-fixed absolute inset-0 -z-1  ' style={{ backgroundImage: `url(${homeBG})` }} />
+                <ImgSlider />
+                <div className=" relative py-24">
+                    <Viewers />
+                    <Recommands />
+                    <NewDisney />
+                    <Originals />
+                    <Trending />
+                    <ContentDiscoverySection />
+                    <HighlightsSection />
+                </div>
+
             </div>
-        </div>
+            <Footer />
+        </>
     )
 }
 
