@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html{
+  scroll-behavior: smooth;
+}
+.slick-prev, .slick-next {
+  @apply opacity-0 transition-opacity duration-300 ease-in-out h-full w-[5vw] z-[1]; /* Set opacity to 0 */
+}
+.slick-prev{
+  @apply left-16;
+}
+.slick-next{
+  @apply right-16;
+}
+.slick-prev:hover, .slick-next:hover {
+  @apply transition-opacity ease-in-out  opacity-100 ; /* Set opacity to 100 on hover */
+}
+
+.slick-dots li button:before {
+  content: '';
+  @apply size-3 rounded-full bg-gray-400;
+}
+
+/* Style for inactive dots */
+.slick-dots li {
+  @apply size-3 mx-2;
+}
+
+.slick-dots li button {
+  @apply size-3 p-0;
+}
+
+/* Style for active dot */
+.slick-dots li.slick-active button:before {
+  @apply bg-white;
+}
+.slick-list {
+  overflow: visible !important;
+}
