@@ -51,7 +51,7 @@ const Header = () => {
             }
         });
         return () => unsubscribe();
-    }, [user.name, navi]);
+    }, [user]);
 
     const handleAuth = async () => {
         try {
