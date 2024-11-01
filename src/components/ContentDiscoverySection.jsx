@@ -1,4 +1,6 @@
+import { useGSAP } from '@gsap/react';
 import { useState } from 'react';
+import { gsapAnimation } from '../utils/animation';
 
 const ContentDiscoverySection = () => {
     const [activeCategory, setActiveCategory] = useState('featured');
@@ -77,6 +79,47 @@ const ContentDiscoverySection = () => {
             ]
         }
     ];
+    useGSAP(() => {
+        gsapAnimation('#popShow', {
+            y: 100,
+            opacity: 0,
+        }, {
+            y: 0,
+            opacity: 1,
+            stagger: {
+                amount: 1.5,
+                grid: [2, 1],
+                axis: 'y',
+                ease: 'back.inOut',
+                from: 'center'
+            },
+
+        })
+        gsapAnimation('#popbutton', {
+            opacity: 0,
+            x: 300,
+        }, {
+            x: 0,
+            opacity: 1,
+            stagger: {
+                amount: 1.5,
+                each: 0.2,
+                ease: 'power3.out',
+            },
+
+        })
+        gsapAnimation('.pop', {
+            x: -140,
+            opacity: 0,
+        }, {
+            x: 0,
+
+            opacity: 1,
+            duration: 2,
+            ease: 'back.inOut'
+        })
+
+    }, [])
 
     return (
         <div className="bg-[#040714] py-16 mt-24 rounded-lg">
@@ -84,13 +127,13 @@ const ContentDiscoverySection = () => {
 
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Popular on Disney+</h2>
-                        <p className="text-gray-400 text-lg">Trending shows and fan favorites</p>
+                        <h2 id='' className=" pop text-3xl md:text-4xl font-bold text-white mb-4">Popular on Disney+</h2>
+                        <p className="text-gray-400 text-lg pop">Trending shows and fan favorites</p>
                     </div>
 
                     <div className="flex flex-wrap gap-4 mt-6 md:mt-0">
                         {categories.map(category => (
-                            <button
+                            <button id='popbutton'
                                 key={category.id}
                                 onClick={() => setActiveCategory(category.id)}
                                 className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${activeCategory === category.id
@@ -113,6 +156,7 @@ const ContentDiscoverySection = () => {
                     >
                         {category.items.map((item, index) => (
                             <div
+                                id='popShow'
                                 key={index}
                                 className="group relative rounded-lg overflow-hidden cursor-pointer shadow-lg"
                             >

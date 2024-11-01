@@ -1,4 +1,6 @@
+import { useGSAP } from '@gsap/react';
 import { useState } from 'react';
+import { gsapAnimation } from '../utils/animation';
 
 const HighlightsSection = () => {
     const [activeCategory, setActiveCategory] = useState(0);
@@ -45,6 +47,11 @@ const HighlightsSection = () => {
         }
     ];
 
+    useGSAP(() => {
+        gsapAnimation('#mainImage', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1 });
+        gsapAnimation('#categoryButtons', { x: -50, opacity: 0 }, { x: 0, opacity: 1, stagger: 0.1, duration: 1 });
+        gsapAnimation('#itemsGrid .item', { y: 50, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.2, duration: 1 });
+    }, [activeCategory]);
     return (
         <div className="py-8 md:py-16">
             <div className="max-w-7xl mx-auto px-4">
@@ -59,7 +66,7 @@ const HighlightsSection = () => {
                 </div>
 
 
-                <div className="flex  md:justify-center gap-2 md:gap-4 mb-8 md:mb-12 pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0">
+                <div id="categoryButtons" className="flex  md:justify-center gap-2 md:gap-4 mb-8 md:mb-12 pb-2 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0">
                     {highlights.map((item, index) => (
                         <button
                             key={index}
@@ -77,7 +84,7 @@ const HighlightsSection = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8">
 
-                    <div className="relative group">
+                    <div className="relative group" id="mainImage">
                         <div className="aspect-[16/9] rounded-xl overflow-hidden">
                             <img
                                 src={highlights[activeCategory].image}
@@ -112,11 +119,11 @@ const HighlightsSection = () => {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 md:gap-4">
+                    <div id="itemsGrid" className="grid grid-cols-2 gap-2 md:gap-4">
                         {highlights[activeCategory].items.map((item, index) => (
                             <div
                                 key={index}
-                                className="group relative rounded-lg overflow-hidden cursor-pointer"
+                                className="item  group relative rounded-lg overflow-hidden cursor-pointer"
                             >
                                 <div className="aspect-[4/3]">
                                     <img

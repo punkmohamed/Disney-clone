@@ -3,7 +3,6 @@ import Login from "./components/Login"
 import Header from "./components/Header"
 import Home from "./components/Home"
 import MovieDetails from "./components/MovieDetails"
-import Footer from "./components/Footer"
 
 function App() {
 

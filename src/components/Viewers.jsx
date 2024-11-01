@@ -1,3 +1,4 @@
+import { useGSAP } from '@gsap/react'
 import view1 from '../assets/images/viewers-disney.png'
 import view2 from '../assets/images/viewers-marvel.png'
 import view3 from '../assets/images/viewers-national.png'
@@ -8,6 +9,7 @@ import video2 from '../assets/videos/1564676115-marvel.mp4'
 import video3 from '../assets/videos/1564676296-national-geographic.mp4'
 import video4 from '../assets/videos/1564676714-pixar.mp4'
 import video5 from '../assets/videos/1608229455-star-wars.mp4'
+import { gsapAnimation } from './../utils/animation';
 
 
 const viewers = [
@@ -19,10 +21,27 @@ const viewers = [
 ];
 
 const Viewers = () => {
+    useGSAP(() => {
+        gsapAnimation('#view', {
+            opacity: 0,
+            x: 200,
+        }, {
+            x: 0,
+            opacity: 1,
+            duration: 0.3,
+
+            stagger: {
+                amount: 1.5,
+                each: 0.2,
+                ease: 'power3.out',
+            },
+
+        })
+    }, [])
     return (
         <div className="grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-center   gap-6">
             {viewers.map((view, i) => (
-                <div key={i} className=" group hover:scale-110 relative rounded-lg shadow-md cursor-pointer overflow-hidden transition-all duration-200  border border-white">
+                <div id='view' key={i} className=" group hover:scale-110 relative rounded-lg shadow-md cursor-pointer overflow-hidden transition-all duration-200  border border-white">
                     <img className=' size-full object-cover absolute inset-0 top-0  opacity-100 block transition-opacity duration-500 ease-in-out' src={view.img} alt="img" />
                     <video className='size-full  opacity-0 z-0 group-hover:opacity-100 transition-opacity' autoPlay
                         loop
